@@ -1,12 +1,12 @@
-# React + Vite
+# Reporting Missing people around the world on a map(globe)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+-npm run dev to run the project
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The tech that use in this project
+-Vite React
+-Mongo Atlas to store cloud database
+-Mongoose to have type safety
+-MapBox API to fetch geo location lng, lat
+-Express backend
+-React Date picker
+-MapBox Token, Mongo Atlas token needed(and they are stored in .env file and it gets ignored by .gitignore) to prevent token being exposed to public
