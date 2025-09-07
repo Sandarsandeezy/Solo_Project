@@ -1,0 +1,35 @@
+import mongoose from 'mongoose';
+
+const missingPersonSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    number: { type: String, required: true },
+    reportee: { type: String, required: true },
+    relationship: String,
+    selectedDate: Date,
+    address: {
+      street: String,
+      city: String,
+      full: String, // e.g. "1226 W Imperial Hwy, Los Angeles, CA"
+    },
+
+    // Coordinates returned from Mapbox
+    location: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        default: 'Point',
+      },
+      coordinates: {
+        type: [Number], // [longitude, latitude]
+        required: true,
+        index: '2dsphere', // so MongoDB can do geo queries
+      },
+    },
+    description: String,
+    photoUrl: String,
+  },
+  { timestamps: true }
+);
+
+export default mongoose.model('MissingPerson', missingPersonSchema);

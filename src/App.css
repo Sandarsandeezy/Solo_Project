@@ -1,0 +1,57 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+body {
+  margin: 0;
+  height: 100vh; /* full screen height */
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: flex-start; /* stick to top */
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+/* className */
+.mp-btn {
+  /* padding: 1em; */
+  background-color: transparent;
+}
+/* actual button */
+.mp-btn button {
+  position: absolute;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  z-index: 1000;
+}
+#map {
+  position: absolute; /*makes it fill behind everything */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw; /* full width */
+  height: 100vh; /* full height */
+  z-index: 1;
+}
+.form-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
+  z-index: 1000; /* Between map and form */
+}
