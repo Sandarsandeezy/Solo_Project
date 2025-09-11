@@ -55,3 +55,18 @@ body {
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
   z-index: 1000; /* Between map and form */
 }
+.popup-wrapper {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999; /* <-- above the map */
+}
+
+.popup-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  max-width: 300px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}

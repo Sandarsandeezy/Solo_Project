@@ -4,6 +4,7 @@ import axios from 'axios';
 import './App.css';
 import MapBoxComponent from './Components/MapBox';
 import PopupCard from './Components/PopupCard';
+
 function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [persons, setPersons] = useState([]);
@@ -69,7 +70,11 @@ function App() {
       />
       {selectedPerson && (
         <div className='popup-wrapper'>
-          <PopupCard formData={selectedPerson} />
+          <PopupCard
+            formData={selectedPerson}
+            onClose={() => setSelectedPerson(null)}
+            onDeleted={() => setRefreshKey((prev) => prev + 1)}
+          />
         </div>
       )}
     </>

@@ -13,7 +13,6 @@ const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = 3000;
-const router = express.Router();
 
 /**
  * handle parsing request body
@@ -34,7 +33,11 @@ mongoose
 /**
  * handle requests for static files
  */
+
 app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
+app.get('/', (req, res) => {
+  res.status(200).json({ Hello: 'Hello world' });
+});
 app.post('/geocode', async (req, res) => {
   try {
     const { formData, address } = req.body;
@@ -95,25 +98,30 @@ app.get('/getAllPersons', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch all persons' });
   }
 });
-/**
- * define route handlers
- */
-// app.use('/api/characters', characters);
-// app.use('/api', api);
-
-// route handler to respond with main app
-app.get('/', (req, res) => {
-  return res.sendFile(path.join(__dirname, '../index.html'));
+app.delete('/:id', async (req, res) => {
+  // console.log('deleting id', req.params.id);
+  const personid = req.params.id;
+  try {
+    const removePerson = await MissingPerson.findByIdAndDelete(personid);
+    console.log('removedPerson', removePerson);
+    res.status(200).json(removePerson);
+  } catch (error) {
+    console.error('Error deleting', error.message);
+    res.status(500).json({ error: 'Failed to delete person' });
+  }
 });
+// app.get('/', (req, res) => {
+//   return res.sendFile(path.join(__dirname, '../index.html'));
+// });
 
-// catch-all route handler for any requests to an unknown route
-app.use((req, res) => {
-  res.sendStatus(404);
-});
+// // catch-all route handler for any requests to an unknown route
+// app.use((req, res) => {
+//   res.sendStatus(404);
+// });
 
-/**
- * configure express global error handler
- */
+// /**
+//  * configure express global error handler
+//  */
 app.use((err, req, res, next) => {
   console.log('error object received by Global Error Handler:', err);
   console.log('proof of type!:', typeof err);
