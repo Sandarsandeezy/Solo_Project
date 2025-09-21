@@ -4,6 +4,7 @@ import axios from 'axios';
 import './App.css';
 import MapBoxComponent from './Components/MapBox';
 import PopupCard from './Components/PopupCard';
+
 function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [persons, setPersons] = useState([]);
@@ -36,6 +37,13 @@ function App() {
   useEffect(() => {
     fetchPersons();
   }, []);
+  useEffect(() => {
+    if (selectedPerson) {
+      document.body.style.overflow = 'hidden'; // disable background scroll
+    } else {
+      document.body.style.overflow = 'auto'; // re-enable scroll
+    }
+  }, [selectedPerson]);
   return (
     <>
       <div className='mp-btn'>
@@ -69,7 +77,11 @@ function App() {
       />
       {selectedPerson && (
         <div className='popup-wrapper'>
-          <PopupCard formData={selectedPerson} />
+          <PopupCard
+            formData={selectedPerson}
+            onClose={() => setSelectedPerson(null)}
+            onDeleted={() => setRefreshKey((prev) => prev + 1)}
+          />
         </div>
       )}
     </>

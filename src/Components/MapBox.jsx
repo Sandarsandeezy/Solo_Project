@@ -23,7 +23,7 @@ const MapBoxComponent = ({
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
-      center: [-74.5, 40],
+      center: [-118.353427, 33.930689],
       zoom: 9,
       projection: 'globe',
     });
@@ -53,20 +53,16 @@ const MapBoxComponent = ({
       const coords = person?.location?.coordinates;
       if (Array.isArray(coords) && coords.length === 2) {
         const [lng, lat] = coords;
-        const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-          `<h3>${person.name}</h3><p>${person.description}</p>`
-        );
+        console.log('latlng', coords);
         const marker = new mapboxgl.Marker()
           .setLngLat([lng, lat])
-          .setPopup(popup)
-          .addTo(mapRef.current);
 
+          .addTo(mapRef.current);
+        marker.getElement().style.cursor = 'pointer';
         marker.getElement().addEventListener('click', () => {
           if (onPersonSelected) onPersonSelected(person);
         });
-        popup.on('open', () => {
-          if (onPersonSelected) onPersonSelected(person);
-        });
+
         markersRef.current.push(marker);
         console.log('Total markers added to map:', markersRef.current.length);
       }
