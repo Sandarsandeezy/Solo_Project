@@ -37,6 +37,13 @@ function App() {
   useEffect(() => {
     fetchPersons();
   }, []);
+  useEffect(() => {
+    if (selectedPerson) {
+      document.body.style.overflow = 'hidden'; // disable background scroll
+    } else {
+      document.body.style.overflow = 'auto'; // re-enable scroll
+    }
+  }, [selectedPerson]);
   return (
     <>
       <div className='mp-btn'>

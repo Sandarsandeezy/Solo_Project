@@ -31,6 +31,7 @@ const PopupCard = ({ formData, onClose, onDeleted }) => {
         }
         const data = await response.json();
         console.log('Deleted:', data);
+        alert('This person has been found successfully');
         onClose();
         if (onDeleted) onDeleted();
       } catch (err) {
@@ -41,44 +42,49 @@ const PopupCard = ({ formData, onClose, onDeleted }) => {
     }
   };
   return (
-    <div className='popup-card'>
-      <button className='close-btn' onClick={onClose}>
-        ×
-      </button>
-      <div className='popup-details'>
-        {name && (
-          <div>
-            <strong>Name:</strong>
-            {name}
-          </div>
-        )}
-        {description && (
-          <div>
-            <strong>Description:</strong>
-            {description}
-          </div>
-        )}
+    <div className='popup-overlay'>
+      <div className='popup-card'>
+        <button className='close-btn' onClick={onClose}>
+          ×
+        </button>
+        <div className='popup-details'>
+          {name && (
+            <div>
+              <strong>Name:</strong>
+              {name}
+            </div>
+          )}
+          {description && (
+            <div>
+              <strong>Description:</strong>
+              {description}
+            </div>
+          )}
 
-        {number && (
-          <div>
-            <strong>Contact:</strong> {number}
-          </div>
-        )}
+          {number && (
+            <div>
+              <strong>Contact:</strong> {number}
+            </div>
+          )}
 
-        {(street || city || address?.city) && (
-          <div>
-            <strong>Last Seen:</strong>{' '}
-            {[street, city || address?.city].filter(Boolean).join(', ')}
-          </div>
-        )}
-        {selectedDate && (
-          <div>
-            <strong>Date:</strong> {new Date(selectedDate).toLocaleDateString()}
-          </div>
-        )}
-      </div>
-      <div>
-        <button onClick={handleFoundPerson}>Mark as found</button>
+          {(street || city || address?.city) && (
+            <div>
+              <strong>Last Seen:</strong>{' '}
+              {[street, city || address?.city].filter(Boolean).join(', ')}
+            </div>
+          )}
+          {selectedDate && (
+            <div>
+              <strong>Date:</strong>{' '}
+              {new Date(selectedDate).toLocaleDateString()}
+            </div>
+          )}
+        </div>
+        <div>
+          <button className='found-btn' onClick={handleFoundPerson}>
+            Mark as found
+          </button>
+        </div>
       </div>
     </div>
   );
