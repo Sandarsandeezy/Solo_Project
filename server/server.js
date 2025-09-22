@@ -35,9 +35,7 @@ mongoose
  */
 
 // app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
-app.get('/', (req, res) => {
-  res.status(200).json({ Hello: 'Hello world' });
-});
+
 app.post('/geocode', async (req, res) => {
   try {
     const { formData, address } = req.body;
