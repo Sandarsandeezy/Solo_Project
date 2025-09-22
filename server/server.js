@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 /**
  * handle parsing request body
@@ -33,8 +33,12 @@ mongoose
 /**
  * handle requests for static files
  */
-
-app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
+// Serve frontend build
+app.use(express.static(path.join(__dirname, '../dist')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
+// app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
 app.get('/', (req, res) => {
   res.status(200).json({ Hello: 'Hello world' });
 });
