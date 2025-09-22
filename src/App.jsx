@@ -24,10 +24,11 @@ function App() {
   const handleform = () => {
     setIsFormOpen(true);
   };
+  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
   const fetchPersons = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/getAllPersons');
+      const res = await axios.get(`${API_BASE}/getAllPersons`);
       setPersons(res.data.persons);
     } catch (err) {
       console.error('Error fetching persons', err);

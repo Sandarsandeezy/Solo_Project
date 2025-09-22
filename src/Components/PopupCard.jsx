@@ -15,6 +15,8 @@ const PopupCard = ({ formData, onClose, onDeleted }) => {
     description,
     address,
   } = formData;
+  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
   const handleFoundPerson = async () => {
     const name = prompt('Please enter name of the person who reported');
     if (!name) return;
@@ -23,7 +25,7 @@ const PopupCard = ({ formData, onClose, onDeleted }) => {
     }
     if (reportee === name) {
       try {
-        const response = await fetch(`http://localhost:3000/${_id}`, {
+        const response = await fetch(`${API_BASE}/${_id}`, {
           method: 'DELETE',
         });
         if (!response.ok) {

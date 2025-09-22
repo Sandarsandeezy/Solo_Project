@@ -68,6 +68,7 @@ const MapBoxComponent = ({
       }
     });
   };
+  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
   // fetch + add markers when refreshKey changes
   useEffect(() => {
@@ -75,7 +76,7 @@ const MapBoxComponent = ({
       if (!mapRef.current) return;
 
       try {
-        const res = await axios.get('http://localhost:3000/getAllPersons');
+        const res = await axios.get(`${API_BASE}/getAllPersons`);
         const persons = res.data.persons;
 
         if (hasLoadedRef.current) {

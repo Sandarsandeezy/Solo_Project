@@ -33,9 +33,11 @@ const InfoForm = ({
       description,
       // address: `${street}, ${city}`,
     };
+    const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
     const address = `${street}, ${city}`;
     try {
-      const response = await axios.post('http://localhost:3000/geocode', {
+      const response = await axios.post(`${API_BASE}/geocode`, {
         formData,
         address,
       });
