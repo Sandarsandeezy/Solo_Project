@@ -15,7 +15,7 @@ const PopupCard = ({ formData, onClose, onDeleted }) => {
     description,
     address,
   } = formData;
-  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+  const API_BASE = import.meta.env.VITE_API_URL || window.location.origin;
 
   const handleFoundPerson = async () => {
     const name = prompt('Please enter name of the person who reported');

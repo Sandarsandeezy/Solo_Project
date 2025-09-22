@@ -24,7 +24,7 @@ function App() {
   const handleform = () => {
     setIsFormOpen(true);
   };
-  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+  const API_BASE = import.meta.env.VITE_API_URL || window.location.origin;
 
   const fetchPersons = async () => {
     try {
