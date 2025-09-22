@@ -33,11 +33,7 @@ mongoose
 /**
  * handle requests for static files
  */
-// Serve frontend build
-app.use(express.static(path.join(__dirname, '../dist')));
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
+
 // app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
 app.get('/', (req, res) => {
   res.status(200).json({ Hello: 'Hello world' });
@@ -114,14 +110,12 @@ app.delete('/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to delete person' });
   }
 });
-// app.get('/', (req, res) => {
-//   return res.sendFile(path.join(__dirname, '../index.html'));
-// });
-
-// // catch-all route handler for any requests to an unknown route
-// app.use((req, res) => {
-//   res.sendStatus(404);
-// });
+// Serve frontend build
+app.use(express.static(path.join(__dirname, '../dist')));
+// Catch-all for React Router (always LAST)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 
 // /**
 //  * configure express global error handler
