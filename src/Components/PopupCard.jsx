@@ -25,7 +25,7 @@ const PopupCard = ({ formData, onClose, onDeleted }) => {
     }
     if (reportee === name) {
       try {
-        const response = await fetch(`${API_BASE}/${_id}`, {
+        const response = await fetch(`${API_BASE}/person/${_id}`, {
           method: 'DELETE',
         });
         if (!response.ok) {

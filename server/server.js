@@ -98,7 +98,7 @@ app.get('/getAllPersons', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch all persons' });
   }
 });
-app.delete('/:id', async (req, res) => {
+app.delete('/person/:id', async (req, res) => {
   // console.log('deleting id', req.params.id);
   const personid = req.params.id;
   try {
